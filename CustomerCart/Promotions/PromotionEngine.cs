@@ -14,27 +14,16 @@ namespace Cart
             _promotionTypes.AddRange(promotionTypes);
         }
 
-        public decimal GetNetTotal(List<CustomerItem> customerItems)
+        public decimal GetPromotionDiscount(List<CustomerItem> customerItems)
         {
             decimal promotionDiscount = 0.0M;
-            var totalAmount = GetTotalAmount(customerItems);
             foreach (var promotiontype in _promotionTypes)
             {
                 promotionDiscount += promotiontype.GetDiscount(customerItems);
             }
-
-            return totalAmount - promotionDiscount;
+            return promotionDiscount;
         }
 
-        public decimal GetTotalAmount(List<CustomerItem> customerItems)
-        {
-            decimal netAmount = 0.0M;
-
-            foreach (CustomerItem customerItem in customerItems)
-            {
-                netAmount += (customerItem.GetTotalAmount());
-            }
-            return netAmount;
-        }
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Cart;
 using Cart.Model;
+using Cart.PromotionTypes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -18,38 +19,41 @@ namespace CustomerCartTest
         [TestMethod]
         public void ScenarioATest()
         {
-            decimal netTotal = 0.0M;
+            decimal totalCartAmount=0.0M, totalPromotionDiscount =0.0M;
             AddProduct();
             AddPromotionTypes();
             AddScenarioAProductToCart();
             PromotionEngine promotionEngine = new PromotionEngine(_promotionTypes);
-            netTotal = promotionEngine.GetNetTotal(_customerCart.CustomerItems);
-            Assert.AreEqual(100, netTotal);
+            totalCartAmount = _customerCart.GetTotalCartAmount();
+            totalPromotionDiscount = promotionEngine.GetPromotionDiscount(_customerCart.CustomerItems);
+            Assert.AreEqual(100, totalCartAmount - totalPromotionDiscount);
         }
 
         [TestMethod]
         public void ScenarioBTest()
         {
-            decimal netTotal = 0.0M;
+            decimal totalCartAmount = 0.0M, totalPromotionDiscount = 0.0M;
             AddProduct();
             AddPromotionTypes();
             AddScenarioBProductToCart();
 
             PromotionEngine promotionEngine = new PromotionEngine(_promotionTypes);
-            netTotal = promotionEngine.GetNetTotal(_customerCart.CustomerItems);
-            Assert.AreEqual(370, netTotal);
+            totalCartAmount = _customerCart.GetTotalCartAmount();
+            totalPromotionDiscount = promotionEngine.GetPromotionDiscount(_customerCart.CustomerItems);
+            Assert.AreEqual(370, totalCartAmount - totalPromotionDiscount);
         }
 
         [TestMethod]
         public void ScenarioCTest()
         {
-            decimal netTotal = 0.0M;
+            decimal totalCartAmount = 0.0M, totalPromotionDiscount = 0.0M;
             AddProduct();
             AddPromotionTypes();
             AddScenarioCProductToCart();
             PromotionEngine promotionEngine = new PromotionEngine(_promotionTypes);
-            netTotal = promotionEngine.GetNetTotal(_customerCart.CustomerItems);
-            Assert.AreEqual(280, netTotal);
+            totalCartAmount = _customerCart.GetTotalCartAmount();
+            totalPromotionDiscount = promotionEngine.GetPromotionDiscount(_customerCart.CustomerItems);
+            Assert.AreEqual(280, totalCartAmount - totalPromotionDiscount);
         }
 
         private void AddScenarioCProductToCart()

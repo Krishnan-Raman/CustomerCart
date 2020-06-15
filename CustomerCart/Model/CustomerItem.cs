@@ -7,7 +7,7 @@ namespace Cart.Model
         public Product Product { get; set; }
         public int Quantity { get; set; }
 
-        public decimal GetTotalAmount()
+        public decimal GetProductTotal()
         {
             if (Product != null)
             {

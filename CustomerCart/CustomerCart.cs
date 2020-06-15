@@ -21,6 +21,17 @@ namespace Cart
             CustomerItems.Add(customerItem);
         }
 
+        public decimal GetTotalCartAmount()
+        {
+            decimal netAmount = 0.0M;
+
+            foreach (CustomerItem customerItem in _customeritems)
+            {
+                netAmount += (customerItem.GetProductTotal());
+            }
+            return netAmount;
+        }
+
 
     }
 

@@ -47,6 +47,8 @@
     <Compile Include="ProductRepository.cs" />
     <Compile Include="Promotions\PromotionEngine.cs" />
     <Compile Include="Promotions\PromotionTypes.cs" />
+    <Compile Include="PromotionTypes\SingleSKUPromotionType.cs" />
+    <Compile Include="PromotionTypes\TwoSKUPromotionType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
