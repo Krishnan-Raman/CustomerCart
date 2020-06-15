@@ -1,0 +1,1 @@
+﻿More Promotions can be added later easily by adding new classes in PromotionType.cs file
