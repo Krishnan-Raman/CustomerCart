@@ -40,6 +40,32 @@ namespace CustomerCartTest
             Assert.AreEqual(370, netTotal);
         }
 
+        [TestMethod]
+        public void ScenarioCTest()
+        {
+            decimal netTotal = 0.0M;
+            AddProduct();
+            AddPromotionTypes();
+            AddScenarioCProductToCart();
+            PromotionEngine promotionEngine = new PromotionEngine(_promotionTypes);
+            netTotal = promotionEngine.GetNetTotal(_customerCart.CustomerItems);
+            Assert.AreEqual(280, netTotal);
+        }
+
+        private void AddScenarioCProductToCart()
+        {
+            Product firstProduct = _productRepository.GetProduct(FirstProductName);
+            Product secondProduct = _productRepository.GetProduct(SecondProductName);
+            Product thirdProduct = _productRepository.GetProduct(ThirdProductName);
+            Product fourthProduct = _productRepository.GetProduct(FourthProductName);
+
+            _customerCart = new CustomerCart();
+            _customerCart.AddToCart(firstProduct, 3);
+            _customerCart.AddToCart(secondProduct, 5);
+            _customerCart.AddToCart(thirdProduct, 1);
+            _customerCart.AddToCart(fourthProduct, 1);
+        }
+
         private void AddScenarioBProductToCart()
         {
             Product firstProduct = _productRepository.GetProduct(FirstProductName);
@@ -66,6 +92,8 @@ namespace CustomerCartTest
             _promotionTypes = new List<IPromotionTypes>();
             _promotionTypes.Add(new SingleSKUPromotionType(FirstProductName, 3, 130));
             _promotionTypes.Add(new SingleSKUPromotionType(SecondProductName, 2, 45));
+            _promotionTypes.Add(new TwoSKUPromotionType(_productRepository.GetProduct(ThirdProductName), _productRepository.GetProduct(FourthProductName), 30));
+
 
         }
 
