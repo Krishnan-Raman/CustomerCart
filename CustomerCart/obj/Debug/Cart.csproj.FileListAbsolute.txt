@@ -2,3 +2,4 @@ C:\Krishna\Interviews\Programs\CustomerCart\CustomerCart\CustomerCart\bin\Debug\
 C:\Krishna\Interviews\Programs\CustomerCart\CustomerCart\CustomerCart\bin\Debug\CustomerCart.pdb
 C:\Krishna\Interviews\Programs\CustomerCart\CustomerCart\CustomerCart\obj\Debug\CustomerCart.dll
 C:\Krishna\Interviews\Programs\CustomerCart\CustomerCart\CustomerCart\obj\Debug\CustomerCart.pdb
+C:\Krishna\Interviews\Programs\CustomerCart\CustomerCart\CustomerCart\obj\Debug\Cart.csprojAssemblyReference.cache

@@ -27,6 +27,31 @@ namespace CustomerCartTest
             Assert.AreEqual(100, netTotal);
         }
 
+        [TestMethod]
+        public void ScenarioBTest()
+        {
+            decimal netTotal = 0.0M;
+            AddProduct();
+            AddPromotionTypes();
+            AddScenarioBProductToCart();
+
+            PromotionEngine promotionEngine = new PromotionEngine(_promotionTypes);
+            netTotal = promotionEngine.GetNetTotal(_customerCart.CustomerItems);
+            Assert.AreEqual(370, netTotal);
+        }
+
+        private void AddScenarioBProductToCart()
+        {
+            Product firstProduct = _productRepository.GetProduct(FirstProductName);
+            Product secondProduct = _productRepository.GetProduct(SecondProductName);
+            Product thirdProduct = _productRepository.GetProduct(ThirdProductName);
+
+            _customerCart = new CustomerCart();
+            _customerCart.AddToCart(firstProduct, 5);
+            _customerCart.AddToCart(secondProduct, 5);
+            _customerCart.AddToCart(thirdProduct, 1);
+        }
+
         private void AddProduct()
         {
             _productRepository = new ProductRepository();
@@ -39,7 +64,9 @@ namespace CustomerCartTest
         private void AddPromotionTypes()
         {
             _promotionTypes = new List<IPromotionTypes>();
-            
+            _promotionTypes.Add(new SingleSKUPromotionType(FirstProductName, 3, 130));
+            _promotionTypes.Add(new SingleSKUPromotionType(SecondProductName, 2, 45));
+
         }
 
         private void AddScenarioAProductToCart()
