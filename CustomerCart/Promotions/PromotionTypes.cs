@@ -62,10 +62,16 @@ namespace Cart
 
             productAmountDifference = FirstProduct.Price + SeconProduct.Price - PromotionAmount;
             CustomerItem firstproductItem = customerItems.Where(x => (x.Product.Name == FirstProduct.Name)).FirstOrDefault();
-
+            if (firstproductItem == null)
+            {
+                return promotionDiscount;
+            }
             firstProductcount = firstproductItem.Quantity;
             CustomerItem secondProductItem = customerItems.Where(x => (x.Product.Name == SeconProduct.Name)).FirstOrDefault();
-            
+            if (secondProductItem == null)
+            {
+                return promotionDiscount;
+            }
             secondProductcount = secondProductItem.Quantity;
 
             promotionDiscount = Math.Min(firstProductcount, secondProductcount) * productAmountDifference;
